@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise async</title>
+</head>
+<body>
+    <center><h1>JS-Handson(Promise Async Await)</h1></center>
+    <h3>1) Write one example explaining how you can write a callback function.</h3>
+    <pre>
+        function age(a,b){
+            return a+b;
+        }
+        
+        function detail(name,age){
+            console.log(`${name} ${age}`)
+        }
+        
+        detail("pranit",age(10,20))
+    </pre>
+
+    <h3>2) "Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on.  Explain callback hell. Numbers 1 2 3 4 5 6 7"</h3>
+    <pre>
+        setTimeout(()=>{
+            let count=1
+            console.log(count++)
+            setTimeout(()=>{
+                console.log(count++)
+                setTimeout(()=>{
+                    console.log(count++)
+                    setTimeout(()=>{
+                        console.log(count++)
+                        setTimeout(()=>{
+                            console.log(count++)
+                            setTimeout(()=>{
+                                console.log(count++)
+                                setTimeout(()=>{
+                                    console.log(count++)
+                                },7000)
+                            },6000)
+                        },5000)
+                    },4000)
+                },3000)
+            },2000)
+        },1000)
+    </pre>
+
+    <h3>3) "Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on.  Numbers 1 2 3 4 5 6 7"</h3>
+    <pre>
+        const promise=new Promise((res,rej)=>{
+            let count=1;
+                setTimeout(()=>{
+                    console.log(count)
+                    res(count)
+                },1000)
+        
+        })
+        
+        promise.then((x)=>{
+           let p2=new Promise((res,rej)=>{
+           setTimeout(()=>{
+            res(x+1);
+           },2000)
+           })
+           return p2
+        }).then((x)=>{
+            console.log(x)
+           let p2=new Promise((res,rej)=>{
+           setTimeout(()=>{
+            res(x+1);
+           },3000)
+           })
+           return p2
+        }).then((x)=>{
+            console.log(x)
+            let p2=new Promise((res,rej)=>{
+            setTimeout(()=>{
+             res(x+1);
+            },4000)
+            })
+            return p2
+        }).then((x)=>{
+            console.log(x)
+            let p2=new Promise((res,rej)=>{
+            setTimeout(()=>{
+             res(x+1);
+            },5000)
+            })
+            return p2
+        }).then((x)=>{
+            console.log(x)
+            let p2=new Promise((res,rej)=>{
+            setTimeout(()=>{
+             res(x+1);
+            },6000)
+            })
+            return p2
+        }).then((x)=>{
+            console.log(x)
+            let p2=new Promise((res,rej)=>{
+            setTimeout(()=>{
+             res(x+1);
+            },7000)
+            })
+            return p2
+        }).then((x)=>{
+            console.log(x)
+        })
+        .catch((x)=>{
+            console.log("Error")
+        })
+        
+        
+    </pre>
+
+    <h3>4) "Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+        then it should go to reject the state and catch the error and print Promise Rejected "</h3>
+    <pre>
+        function check(string){
+            let promise=new Promise((res,rej)=>{
+                if(string=="yes"){
+                    res("Promise Resolved")
+                }
+                else{
+                    rej("Promise Rejected")
+                }
+            })
+            return promise
+        }
+        check("yes").then((x)=>{
+            console.log(x)
+        }).catch((x)=>{
+            console.log(x)
+        })
+    </pre>
+
+    <h3>5) Create examples to explain callback function</h3>
+    <pre>
+        let age=((a,b)=>{
+            return a+b
+        })
+        let detail=((name,age)=>{
+            console.log(name,age)
+        })
+        detail("pranit",age(10,10))
+
+    <h3>
+    callbackFunction :- callbackFunction is a function which is passed as an argument to another function,in the above example age is a callbackFunction
+    </h3>
+    </pre>
+
+    <h3>6) Create examples to explain callback hell function</h3>
+    <pre>
+        setTimeout(()=>{
+            let count=2
+            console.log(count)
+            setTimeout(()=>{
+                count=count*2
+                console.log(count)
+                setTimeout(()=>{
+                    count=count*2
+                    console.log(count)
+                    setTimeout(()=>{
+                        count=count*2
+                        console.log(count)
+                        setTimeout(()=>{
+                            count=count*2
+                            console.log(count)
+                            setTimeout(()=>{
+                                count=count*2
+                                console.log(count)
+                                setTimeout(()=>{
+                                    count=count*2
+                                    console.log(count)
+                                },2000)
+                            },2000)
+                        },2000)
+                    },2000)
+                },2000)
+            },2000)
+        },2000)
+    </pre>
+
+    <h3>7) Create examples to explain promises function</h3>
+    <pre>
+        function CheckEven(num){
+            if(num%2==0){
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+        }
+        let promise=new Promise((resolve, reject) => {
+            if(CheckEven(9)==true){
+                resolve("Its Even Number")
+            }
+            else{
+                reject("Its Odd Number")
+            }
+        })
+        promise.then((x)=>{
+            console.log(x)
+        }).catch((x)=>{
+            console.log(x)
+        })
+    </pre>
+
+    <h3>8) Create examples to explain async await function</h3>
+    <pre>
+        function mypromise(num){
+            let promise=new Promise((resolve, reject) => {
+                if(num%2==0){
+                    resolve("Its Even Number")
+                }
+                else{
+                    reject("Its Odd Number")
+                }
+            })
+            return promise
+            }
+            async function Getresult(){
+                try{
+                    let data=await mypromise(8)
+                    console.log(data)
+                }catch(err){
+                    console.log(err)
+                }
+            }
+            Getresult()
+    </pre>
+
+
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
